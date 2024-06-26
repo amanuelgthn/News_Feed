@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+  }
+  
+  :root {
+    --primary-color: #605DC8;
+    --secondary-color: #8B89E6;
+    --accent-color: #e8e7fa;
+    --shadow-color: #E8E8E8;
+  }
+  
+  $primary-color: var(--primary-color);
+  $secondary-color: var(--secondary-color);
+  $accent-color: var(--accent-color);
+  $shadow-color: var(--shadow-color);
+  
+  
+  form.nosubmit {
+    width: 600px;
+    height: 50px;
+    padding: 0;
+  }
+  
+  input.nosubmit {
+    border: 1px solid #555;
+    width: 100%;
+    padding: 9px 4px 9px 40px;
+    background: transparent url(../public/search_icon.svg) no-repeat 13px center;
+  }
+
+  button.primary {
+    padding: 10px;
+    border: solid 1px var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+  }
