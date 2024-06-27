@@ -1,7 +1,8 @@
+import { ListingService } from './../listing.service';
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { ListingService } from '../listing.service';
+
 import { Article } from '../article';
 
 
@@ -10,18 +11,29 @@ import { Article } from '../article';
   standalone: true,
   imports: [CommonModule,],
   template: `
-    <p>
-      details works! {{ articlesId}}
-    </p>
+  <article>
+    <img class='listing-photo' src="{{ article?.image_url }}" alt="">
+  </article>
+  <section class="listing description">
+    <h2 class="listing-heading">{{ article?.title }}</h2>
+    <p class="listing-location">{{ article?.summary}}</p>
+  </section>
+  <section class="listing-features">
+    <h2 class="section-heading">About this location</h2>
+    <ul>
+      <li>{{article?.url}}</li>
+    </ul>
+  </section>
   `,
   styleUrl: './details.component.scss'
 })
 export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   listingService = inject(ListingService);
-  articlesId = 0;
+  article: Article | undefined;
   
   constructor() {
-    this.articlesId = Number(this.route.snapshot.params['id']);
+    const articlesId = Number(this.route.snapshot.params['id']);
+    this.article = this.listingService.getArticleById(articlesId);
     }
   }
