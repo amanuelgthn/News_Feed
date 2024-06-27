@@ -13,11 +13,13 @@ import { Article } from '../article';
   <section class="Search">
   <form class="nosubmit">
   <h1>Filter by keywords</h1>
-  <input class="nosubmit" type="search" placeholder="The most successful IT companies in 2020">
+  <input class="nosubmit" type="search" placeholder="The most successful IT companies in 2020" #filter>
+  <button class="primary" type="button" (click)="filteredResults(filter.value)">Search</button>
 </form>
   </section>
   <section class="results">
-    <app-articles *ngFor="let articles of articleList" [articles]="articles"></app-articles>
+    <app-articles *ngFor="let articles of filteredArticleList" [articles]="articles"></app-articles>
+
   </section>
   `,
   styleUrl: './home.component.scss'
@@ -25,8 +27,18 @@ import { Article } from '../article';
 export class HomeComponent {
   articleList: Article[] = [];
 listingService: ListingService = inject(ListingService);
+filteredArticleList: Article[] = [];
 
 constructor() {
-  this.articleList = this.listingService.getAllArticales();
+  this.listingService.getAllArticles().then((articleList: Article[]) => {
+    this.articleList = articleList;
+    this.filteredArticleList = articleList;
+  });
+}
+
+filteredResults(text: string) {
+  if(!text) this.filteredArticleList = this.articleList;
+
+  this.filteredArticleList = this.articleList.filter(article => article?.title.toLowerCase().includes(text.toLowerCase()));
 }
 }

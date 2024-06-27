@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   template: `
               <main>
                 <header class="brand name">
-                  <img src="/assets/logo-black.svg" alt="logo" aria-hidden="true" width="100">
+                  <h1>Spaceflight News</h1>
                 </header>
                 <section class="content">
                   <router-outlet></router-outlet>
