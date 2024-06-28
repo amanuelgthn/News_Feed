@@ -11,7 +11,7 @@ import { RouterModule  } from '@angular/router';
     <section class="listing">
       <img class="listing-photo" [src]="articles.image_url" alt="Image of 
       {{ articles.title }} " width="400" height="217">
-      <p class="article-date">{{ articles.updated_at }}</p>
+      <p class="article-date">{{ articles.updated_at | date:'MMMM d, y HH:mm' }}</p>
       <h1 class="listing-header">{{ articles.title }}</h1>
       <p class="listing-location">{{ articles.summary }}</p>
       <a class="article-more" [routerLink]="['/details', articles.id]">Read More→</a>

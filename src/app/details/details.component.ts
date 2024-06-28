@@ -19,10 +19,12 @@ import { Article } from '../article';
     <h2 class="listing-heading">{{ article?.title }}</h2>
     <p class="listing-location">{{ article?.summary}}</p>
   </section>
-  <section class="listing-features">~
-    <h2 class="section-heading">About this location</h2>
+  <section class="listing-features">
     <ul>
-      <li>{{article?.url}}</li>
+      <li *ngIf="article?.url">
+        <a [href]="article?.url" target="_blank">{{article?.url}}</a>
+        <p>{{ articleContent }}</p>
+      </li>
     </ul>
   </section>
   <section class="Back-Home">
@@ -35,6 +37,7 @@ export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   listingService = inject(ListingService);
   article: Article | undefined;
+  articleContent: string | undefined;
   
   constructor() {
     const articlesId = Number(this.route.snapshot.params['id']);
@@ -43,4 +46,5 @@ export class DetailsComponent {
       console.log(this.article);
     })
   }
+  
   }

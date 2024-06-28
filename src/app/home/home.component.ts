@@ -13,8 +13,8 @@ import { Article } from '../article';
   <section class="Search">
   <form class="nosubmit">
   <h1>Filter by keywords</h1>
-  <input class="nosubmit" type="search" placeholder="The most successful IT companies in 2020" #filter>
-  <button class="primary" type="button" (click)="filteredResults(filter.value)">Search</button>
+  <input class="nosubmit" type="search" placeholder="The most successful IT companies in 2020" #filter (input)="filteredResults(filter.value)">
+  <p class="results_show">Results: {{ filteredArticleList.length }}</p>
 </form>
   </section>
   <section class="results">
