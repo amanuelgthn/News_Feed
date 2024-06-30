@@ -1,6 +1,6 @@
 module.exports = function(config) {
     config.set({
-      frameworks: ['jasmine', 'karma', 'chai', 'angular'], // Adjust based on your test framework
+      frameworks: ['jasmine'], // Adjust based on your test framework
       files: [
         'src/**/*.spec.js' // Adjust the pattern to match your test files
       ],
@@ -8,7 +8,19 @@ module.exports = function(config) {
         'src/**/*.spec.js': ['webpack']
       },
       webpack: {
-        // Your webpack configuration if needed
+        mode: 'development',
+        module: {
+          rules: [
+            {
+              test: /\.ts$/,
+              use: 'ts-loader',
+              exclude: /node_modules/
+            }
+          ]
+        },
+        resolve: {
+          extensions: ['.ts', '.js']
+        }
       },
       reporters: ['progress'],
       port: 9876,
